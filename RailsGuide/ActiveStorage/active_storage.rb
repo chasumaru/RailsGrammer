@@ -1,5 +1,5 @@
 
-
+# https://railsguides.jp/active_storage_overview.html
 
 ### テーブル構造について
 
@@ -16,3 +16,13 @@
 #- グラフィックイメージ, サテライトイメージ, ビデオクリップ
 
 # ダイレクトアップロード機能を利用すると、不完全なvalidationになる。
+
+
+
+
+### 利用方法
+# ActiveStorageに巨大画像を保存させない
+#=> 画像サイズのvalidation
+#=> 画像を圧縮してDBに保存する(ストレージの節約)
+# ActiveStorageに大量の画像を保存させない
+#=> 画像数のvalidation
