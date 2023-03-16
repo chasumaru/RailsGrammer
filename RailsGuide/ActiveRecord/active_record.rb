@@ -38,9 +38,47 @@ user.age=(3)
 
 ### Assosiation(関連付け)
 
+# https://railsguides.jp/association_basics.html
+
 # 関連付けをModelに宣言する → Modelのクラスメソッドが追加される
 
 # 双方関連付け → モデルの親子関係を意識する
+
+
+
+## 関連付けの有用性
+
+
+class Author < ApplicationRecord
+  has_many :books, dependent: :destroy
+end
+
+class Book < ApplicationRecord
+  belongs_to :author
+end
+
+
+# 既存の著者が新しい書籍を1件追加する場合
+
+#1 関連付けなし
+@book = Book.create(published_at: Time.now, author_id: @author.id)
+
+#2 関連付けあり
+@book = @author.book.create(published_at: Time.now)
+
+
+# 著者を一人削除し、著者の書籍を全て削除する場合
+
+#1 関連付けなし
+@books = Book.where(author_id: @author.id)
+@books.each do |book|
+  book.destroy
+end
+@author.destroy
+
+#2 関連付けあり
+@author.destroy
+
 
 
 
