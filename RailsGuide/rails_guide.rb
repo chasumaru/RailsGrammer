@@ -12,5 +12,11 @@
 ## Guideの深掘りをする項目
 
 # active_record
-# query_interface
-#- https://railsguides.jp/active_record_querying.html#limit%E3%81%A8offset
+
+
+
+
+
+## 一旦おいとくTask
+
+# query_interface #=> enum
