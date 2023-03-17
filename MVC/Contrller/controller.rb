@@ -89,9 +89,22 @@
 
 
 
+### セキュリティ
 
+## BASIC認証
+# http_basic_authenticate_with ...アクションへのアクセスに認証を要求する
 
+class ArticlesController < ApplicationController
 
+  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+
+  def index
+    @articles = Article.all
+  end
+  # 以下省略
+end
+
+#- :nameと:passwordは環境変数で管理したいな
 
 
 

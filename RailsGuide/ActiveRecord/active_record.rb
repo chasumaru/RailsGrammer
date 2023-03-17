@@ -4,34 +4,15 @@
 
 ### 概要
 
-# https://pikawaka.com/ruby/attr_accessor
+# Active Record ...ORMシステムの機能の一つ
+
+# ORM(O/Rマッピング) ...Object Relational Mapping
+#- アプリケーションのオブジェクトとRDBMSのテーブルを接続する
+#- SQLの代わりにDBへアクセスしてくれる
+
 
 # ActiveRecord の継承により、テーブルに定義したカラムには自動的にアクセサメソッドが設定される
 
-#- アクセサメソッドは、テーブルに定義したカラム以外にデータを保持する場合に利用する
-
-
-# attr_reader ...getterメソッドの省略記法
-attr_reader :age
-
-#- getterメソッド
-def age
-  @age
-end
-
-
-# attr_writer ...setterメソッドの省略記法
-attr_writer :age
-
-#- setter
-def age=(age)
-  @age = age
-end
-
-# setterメソッド呼び出し①
-user.age = 3
-# setterメソッド呼び出し②
-user.age=(3)
 
 
 

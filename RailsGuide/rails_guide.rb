@@ -36,7 +36,13 @@
 ## COC ...Convention Over Configuration
 # 設定より規約が優先
 
-#- Railsのデフォルト設定をフル活用
+#- Railsのデフォルト設定, 仕様が定式化している
+
+
+## Resourcefulアーキテクチャ
+# CRUDを追加する
+
+
 
 
 
@@ -77,21 +83,48 @@ rails new Blog
 ### 機能の実装手順
 
 
-
 ##1 Controllerの実装
 
 # rails g cotroller ControllerName action_name, ...コントローラーと対応するアクションを作成する
 #- viewファイル, testファイル, helperファイルが作成される
 #- Controller名は複数形
 
+## Form から送信されたデータ(params)はストロングパラメタを利用してフィルタする
+# https://railsguides.jp/action_controller_overview.html#strong-parameters
+
+## Turboに対応する
+# rendering, redirectのステータスコードに注意
+
+
+
+
 ##2 Routingの実装
 
 # config/routes.rb ...ルーティングを作成する
+
+#- Resourcefulなルーティング設計を意識する
+
+
 
 
 ##3 Viewの実装
 
 # コントローラーのアクションに対応するviewファイルを編集する
+
+#- アクションで定義したインスタンス変数を参照できる
+
+# ERB ...Embeded Ruby #=> <% %>, <%= %>
+#- Rubyコードを評価する
+
+## helperの活用
+# フォームビルダー (form_with)
+# https://railsguides.jp/form_helpers.html
+
+## Turboに対応する
+# link_to, button_to → dataオプションを利用し、HTML属性を設定する
+
+
+
 
 
 ##4 Modelを実装する場合
@@ -100,20 +133,30 @@ rails new Blog
 #- modelファイル, migrationファイル, testファイル, fixturesファイルが作成される
 #- Model名は単数形
 
+
 # マイグレーションの実行
 rails db:migrate
 
 # https://railsguides.jp/getting_started.html#%E3%83%A2%E3%83%87%E3%83%AB%E3%82%92%E7%94%A8%E3%81%84%E3%81%A6%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%A8%E3%82%84%E3%82%8A%E3%81%A8%E3%82%8A%E3%81%99%E3%82%8B
 
+# Model同士を関連付ける
+
+## Validation
+#- 無効なモデルオブジェクトを保存する前に検証する
+
+# validationに成功 → Redirect / Rendering
+# validationに失敗 → Rendering
 
 
 
 
+### リファクタリング
 
+## パーシャルとして切り出す
+# フォーム
+# Turbo用のパーシャル
 
-
-
-
+## モジュールはcontroller, modelなどのconcernディレクトリに定義する
 
 
 
@@ -121,6 +164,7 @@ rails db:migrate
 
 
 ### 留意事項
+
 
 ## Railsではアプリケーションのクラスやモジュールは、どこからでも参照できる(オートロードが有効)
 # https://railsguides.jp/autoloading_and_reloading_constants.html
@@ -131,3 +175,6 @@ rails db:migrate
 
 #1 lib/ ディレクトリ配下にあるファイルを参照する場合
 #2 Gemfileで requre: falseが指定されているgem依存を読み込む場合
+
+
+
